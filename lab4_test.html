@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 4 - JSON Input</title>
+</head>
+
+<body>
+
+<h2>Student Information</h2>
+
+<button onclick="sendData()">Send Student Data</button>
+
+<pre id="result"></pre>
+
+<script>
+
+function sendData() {
+
+    const students = [
+        {
+            name: "Lucky",
+            age: 22,
+            course: "BSIT",
+            email: "martizanolucky53@gmail.com"
+        },
+
+        {
+            name: "Billy",
+            age: 21,
+            course: "BSIT",
+            email: "billynaire@gmail.com"
+        }
+    ];
+
+    fetch("lab4_input.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(students)
+    })
+
+    .then(response => response.text())
+
+    .then(data => {
+        document.getElementById("result").textContent = data;
+    });
+
+}
+
+</script>
+
+</body>
+</html>

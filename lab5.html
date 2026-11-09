@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 5 - PHP JSON AJAX</title>
+</head>
+
+<body>
+
+<h2>Student Information</h2>
+
+<button onclick="sendData()">Submit Students</button>
+
+<h3>Server Response:</h3>
+
+<pre id="result"></pre>
+
+<script>
+
+function sendData() {
+
+    const students = [
+        {
+            name: "Lucky",
+            age: 22,
+            course: "BSIT",
+            email: "martizanolucky53@gmail.com"
+        },
+
+        {
+            name: "Billy",
+            age: 21,
+            course: "BSIT",
+            email: "billynaire@gmail.com"
+        }
+    ];
+
+    fetch("lab5_process.php", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(students)
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        document.getElementById("result").textContent =
+            JSON.stringify(data, null, 4);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
